@@ -32,7 +32,8 @@ public class PluginManager {
 				if (plugin == null) {
 					System.exit(ExceptionCode.PLUGIN_CONSTRUCTOR_ERROR.id);
 				} else {
-					setCorePlugin(plugin);
+					corePlugin = plugin;
+					corePlugin.enable();
 				}
 			}
 		} else {
@@ -46,19 +47,6 @@ public class PluginManager {
 	
 	public static CorePlugin getCorePlugin() {
 		return corePlugin;
-	}
-	
-	public static void setCorePlugin(CorePlugin plugin) {
-		if (plugin == null) {
-			throw new IllegalArgumentException("CorePlugin can not be null.");
-		}
-		
-		if (corePlugin != null) {
-			corePlugin.disable(false);
-		}
-		
-		corePlugin = plugin;
-		corePlugin.enable();
 	}
 	
 	public GameStarter getStarter() {
